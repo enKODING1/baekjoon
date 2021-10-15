@@ -49,7 +49,7 @@ int main(void)
     scanf("%d", &max_size);
     char commend[10];
     int data[max_size];
-
+    printf("he");
     for (int i = 0; i < max_size; i++)
     {
         scanf("%s", &commend);
