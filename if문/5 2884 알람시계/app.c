@@ -8,8 +8,7 @@ int hourChangeMinute(int hour)
 int calcTime(int hour, int minute)
 {
     int minute_time = hourChangeMinute(hour) + minute;
-    int result = minute_time - 45;
-    return result;
+    return minute_time - 45;
 }
 
 int changePlus(int num)
