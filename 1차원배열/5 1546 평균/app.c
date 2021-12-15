@@ -1,32 +1,31 @@
-/*
-세준이는 기말고사를 망쳤다. 세준이는 점수를 조작해서 집에 가져가기로 했다. 일단 세준이는 자기 점수 중에 최댓값을 골랐다. 이 값을 M이라고 한다. 그리고 나서 모든 점수를 점수/M*100으로 고쳤다.
-
-예를 들어, 세준이의 최고점이 70이고, 수학점수가 50이었으면 수학점수는 50/70*100이 되어 71.43점이 된다.
-
-세준이의 성적을 위의 방법대로 새로 계산했을 때, 새로운 평균을 구하는 프로그램을 작성하시오.
-*/
-
 #include <stdio.h>
 #include <stdlib.h>
 
-double calc(int num1, int max)
+double calc(int num1, int ptr)
 {
-    return (double)num1 / (double)max * 100;
+    return (double)num1 / (double)ptr * 100;
 }
 
-int maxIndex(int *ptr)
+void solve(int *data, int max, int len)
+{
+    double _data = 0.0;
+    for (int i = 0; i < len; i++)
+    {
+        _data += calc(data[i], max);
+    }
+    printf("%f", _data / len);
+}
+
+int maxValue(int *data, int len)
 {
     int max = -99999;
-
-    int length = sizeof(ptr) / sizeof(int);
-    printf("%d", ptr[1]);
-    // for (int i = 0; i < length; i++)
-    // {
-    //     if (ptr[i] > max)
-    //     {
-    //         max = ptr[i];
-    //     }
-    // }
+    for (int i = 0; i < len; i++)
+    {
+        if (data[i] > max)
+        {
+            max = data[i];
+        }
+    }
 
     return max;
 }
@@ -34,29 +33,16 @@ int maxIndex(int *ptr)
 int main(void)
 {
     int size = 0;
-    // int max_score = 0;
-    // scanf("%d", &input);
+    int max_value = 0;
+
     scanf("%d", &size);
-
-    int *numPtr = (int *)malloc(sizeof(int) * size);
-    printf("%d", sizeof(numPtr));
-    // int *data = (int *)malloc(sizeof(int));
-    // // double *score_data = (double *)malloc(sizeof(double) * input);
-    // printf("%d", sizeof(data));
-
-    // for (int i = 0; i < input; i++)
-    // {
-    //     scanf("%d", &data[i]);
-    // }
-    // max_score = maxIndex(data);
-
-    // printf("%d", max_score);
-    // for (int j = 0; j < input; j++)
-    // {
-    //     score_data[j] = calc(data[j], max_score);
-    // }
-
-    // free(score_data);
-    free(numPtr);
+    int *data = (int *)malloc(sizeof(int) * size);
+    for (int i = 0; i < size; i++)
+    {
+        scanf("%d", &data[i]);
+    }
+    max_value = maxValue(data, size);
+    solve(data, max_value, size);
+    free(data);
     return 0;
 }
