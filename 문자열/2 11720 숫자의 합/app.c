@@ -1,24 +1,36 @@
 #include <stdio.h>
+#include <stdlib.h>
 
-void arrInit(char *arr, int size)
+typedef struct number
 {
-    for (int i = 0; i < size; i++)
-    {
-        arr[i] = 0;
-    }
-}
+    char *text;
+    int size;
+    int value;
+} number;
+
+int solve(number n1);
 
 int main(void)
 {
-    int max_size = 0;
-    scanf("%d", &max_size);
+    number n1;
+    n1.size = 0;
+    n1.value = 0;
+    scanf("%d", &n1.size);
 
-    char text[max_size + 1];
+    n1.text = (char *)malloc(sizeof(char) * n1.size);
+    scanf("%s", n1.text);
+    printf("%d", solve(n1));
 
-    for (int i = 0; i < max_size; i++)
+    free(n1.text);
+    return 0;
+}
+
+int solve(number n1)
+{
+    for (int i = 0; i < n1.size; i++)
     {
-        scanf("%c", &text[i]);
+        n1.value += (n1.text[i] - '0');
     }
 
-    return 0;
+    return n1.value;
 }
