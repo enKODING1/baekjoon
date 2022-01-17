@@ -11,9 +11,9 @@ int main(void)
     long long int num = 0;
     int num_length = 0;
     long long int total = 0;
-    scanf("%d", &num);
+    scanf("%lld", &num);
     char buf[BUF_SIZE];
-    sprintf(buf, "%d", num);
+    sprintf(buf, "%lld", num);
     num_length = strlen(buf);
 
     for (int i = 0; i < num_length; ++i)
