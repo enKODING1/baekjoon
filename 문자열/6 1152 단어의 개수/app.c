@@ -38,7 +38,6 @@ int main(void)
 
     scanf("%[^\n]", t1.data);
     t1.len = strlen(t1.data);
-
     printf("%d", checkText(t1));
 
     return 0;
