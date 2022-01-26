@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <string.h>
-int find(char *text);
+#define MAX_SIZE 100
 
 /*
 č	c=
@@ -12,78 +12,73 @@ nj	nj
 š	s=
 ž	z=
 */
+
 int main(void)
 {
-    char text[100];
-
-    scanf("%s", text);
-    printf("%d", find(text));
-    return 0;
-}
-
-int find(char *text)
-{
-    int len = strlen(text);
+    char data[MAX_SIZE];
+    int len = strlen(data);
     int count = 0;
-
-    for (int i = 0; i < len; ++i)
+    scanf("%s", data);
+    for (int i = 0; data[i + 1] != '\0'; ++i)
     {
-
-        if (text[i] == 'd')
+        if (data[i] == 'c')
         {
-
-            if (text[i + 1] == 'z' && text[i + 2] == 0x3D)
+            if (data[i + 1] == '=' || data[i + 1] == '-')
             {
-
+                i += 2;
                 count++;
             }
             else
             {
-
                 count++;
             }
         }
-        else if (text[i] == 'c' || text[i] == 'z' || text[i] == 's')
+        else if (data[i] == 'd')
         {
-            if (text[i] == 'z' && text[i - 1] == 'd')
+            if (data[i + 1] == 'z' && data[i + 2] == '=')
             {
-            }
-            else if (text[i + 1] == 0x3D)
-            {
-
+                i += 3;
                 count++;
             }
-        }
-        else if (text[i] == 'c' || text[i] == 'd')
-        {
-            if (text[i + 1] == 0x2D)
+            else if (data[i + 1] == '-')
             {
-
-                count++;
-            }
-        }
-        else if (text[i] == 'l' || text[i] == 'n')
-        {
-            if (text[i + 1] == 'j')
-            {
-
+                i += 2;
                 count++;
             }
             else
             {
-
                 count++;
             }
         }
-        else if (text[i - 1] == 'z' || text[i - 1] == 'l' || text[i - 1] == 'n' || text[i - 1] == 's' || text[i - 1] == 'c')
+        else if (data[i] == 'l' || data[i] == 'n')
         {
+            if (data[i + 1] == 'j')
+            {
+                i += 2;
+                count++;
+            }
+            else
+            {
+                count++;
+            }
+        }
+        else if (data[i] == 's' || data[i] == 'z')
+        {
+            if (data[i + 1] == '=')
+            {
+                i += 2;
+                count++;
+            }
+            else
+            {
+                count++;
+            }
         }
         else
         {
-
             count++;
         }
     }
-
-    return count;
+    printf("%d", count);
+    return 0;
 }
